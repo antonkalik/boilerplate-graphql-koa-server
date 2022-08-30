@@ -1,3 +1,3 @@
 # boilerplate-graphql-koa-server
 
-### This boilerplate created for Medium article: "Merge GraphQL Schemas using Apollo Server"
+This repo belongs to the Medium article: https://antonkalik.medium.com/merge-graphql-schemas-using-apollo-server-b06b812107cb
