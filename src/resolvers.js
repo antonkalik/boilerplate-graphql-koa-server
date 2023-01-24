@@ -1,6 +1,6 @@
 const fakeData = {
-  id: 4838745,
-  value: 'Some Random String',
+  id: 202020202,
+  value: 'Some Random String From Graphql Server',
 };
 
 module.exports = {
