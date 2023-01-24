@@ -10,15 +10,13 @@ const resolvers = require('./resolvers');
 
 const EXTERNAL_ENDPOINT = 'http://localhost:4000/api/v1/graphql';
 
-async function server({ typeDefs, resolvers }) {
+(async () => {
   const app = new Koa();
   const httpServer = http.createServer();
-
   const internalSchema = makeExecutableSchema({
     typeDefs,
     resolvers,
   });
-
   const schemas = [internalSchema];
 
   try {
@@ -40,12 +38,11 @@ async function server({ typeDefs, resolvers }) {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app, path: '/api/v1/graphql' });
   httpServer.on('request', app.callback());
+
   await new Promise(resolve => httpServer.listen({ port: process.env.PORT }, resolve));
   console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${apolloServer.graphqlPath}`);
 
   return { apolloServer, app };
-}
-
-server({ typeDefs, resolvers }).then(({ app }) => {
+})().then(({ app }) => {
   app.use(cors());
 });
